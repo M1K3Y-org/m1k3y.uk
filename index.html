@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>M1K3Y</title>
+    <title>M1K3Y - R6 Community</title>
     <style>
         :root {
             --primary-pink: #ff1493;
@@ -27,16 +27,69 @@
         .container {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 20px;
+            padding: 5px 20px 20px 20px;
+        }
+
+        .header-container {
+            display: flex;
+            flex-direction: column;
+            background: linear-gradient(to right, rgba(10,10,10,0.8), rgba(10,10,10,0.9));
+            border-bottom: 2px solid var(--primary-pink);
+            margin-top: 0;
+        }
+
+        .top-logo {
+            text-align: center;
+            padding: 0;
+            margin: 0;
+            padding-top: 10px;
+        }
+
+        .logo-text {
+            font-size: 2.2em;
+            font-weight: bold;
+            color: var(--primary-pink);
+            letter-spacing: 3px;
+            text-shadow: 0 0 10px var(--primary-pink);
+            position: relative;
+            display: inline-block;
+            animation: textGlow 2s infinite alternate;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+
+        @keyframes textGlow {
+            0% {
+                text-shadow: 0 0 5px var(--primary-pink), 0 0 10px var(--primary-pink);
+                color: var(--primary-pink);
+            }
+            100% {
+                text-shadow: 0 0 8px var(--accent-pink), 0 0 15px var(--accent-pink);
+                color: var(--accent-pink);
+            }
+        }
+
+        .logo-text span {
+            display: inline-block;
+            animation: flowUp 2s infinite alternate;
+            animation-delay: calc(0.2s * var(--i));
+        }
+
+        @keyframes flowUp {
+            0% {
+                transform: translateY(0px);
+            }
+            100% {
+                transform: translateY(-5px);
+            }
         }
 
         .header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 20px;
-            background: linear-gradient(to right, rgba(10,10,10,0.8), rgba(10,10,10,0.9));
-            border-bottom: 2px solid var(--primary-pink);
+            padding: 5px 15px 10px 15px;
+            margin-top: 0;
         }
 
         .nav-links {
@@ -137,6 +190,37 @@
             font-weight: bold;
         }
 
+        .accomplishments-section {
+            background: rgba(20,20,20,0.7);
+            padding: 30px;
+            margin-top: 20px;
+            border-radius: 10px;
+            backdrop-filter: blur(10px);
+        }
+
+        .accomplishment-list {
+            list-style-type: none;
+            padding-left: 0;
+        }
+
+        .accomplishment-item {
+            margin-bottom: 15px;
+            position: relative;
+            padding-left: 25px;
+        }
+
+        .accomplishment-item:before {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 8px;
+            width: 10px;
+            height: 10px;
+            background-color: var(--primary-pink);
+            border-radius: 50%;
+            box-shadow: 0 0 8px var(--primary-pink);
+        }
+
         @media (max-width: 768px) {
             .header {
                 flex-direction: column;
@@ -148,18 +232,33 @@
             .nav-links-right {
                 margin-left: 0;
             }
+            .logo-text {
+                font-size: 2em;
+            }
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <div class="header">
-            <div class="nav-links">
-                <div class="nav-links-left">
-                    <a href="#" class="nav-link" id="homeLink">Home</a>
-                </div>
-                <div class="nav-links-right">
-                    <a href="#" class="nav-link" id="hallOfFameLink">Hall of Fame</a>
+        <div class="header-container">
+            <div class="top-logo">
+                <h1 class="logo-text">
+                    <span style="--i:1">M</span>
+                    <span style="--i:2">1</span>
+                    <span style="--i:3">K</span>
+                    <span style="--i:4">3</span>
+                    <span style="--i:5">Y</span>
+                </h1>
+            </div>
+
+            <div class="header">
+                <div class="nav-links">
+                    <div class="nav-links-left">
+                        <a href="#" class="nav-link" id="homeLink">Home</a>
+                    </div>
+                    <div class="nav-links-right">
+                        <a href="#" class="nav-link" id="hallOfFameLink">Hall of Fame</a>
+                    </div>
                 </div>
             </div>
         </div>
@@ -174,8 +273,18 @@
         <div class="about-section">
             <h2 class="section-title">About Me</h2>
             <p class="about-content">
-                Hello my name is <span class="highlight">M1K3Y</span> and I have been apart of R6 cheating com for over a year and in that time I have managed to gain a good reputation as a trusted seller and have received over 100 vouches across many trusted marketplaces
+                Hello my name is <span class="highlight">M1K3Y</span> and I have been apart of R6 cheating com for over a year and in that time I have managed to gain a good reputation as a trusted seller and have received over 100 vouches across many trusted marketplaces.
             </p>
+        </div>
+
+        <div class="accomplishments-section">
+            <h2 class="section-title">Accomplishments</h2>
+            <ul class="accomplishment-list">
+                <li class="accomplishment-item">Achieved the trust of the R6 community.</li>
+                <li class="accomplishment-item">Being a tester for many known Chair providers.</li>
+                <li class="accomplishment-item">Being awarded staff positions from many well known and trusted Chair providers.</li>
+                <li class="accomplishment-item">Surviving the discontinuation of Klar R6.</li>
+            </ul>
         </div>
     </div>
 
