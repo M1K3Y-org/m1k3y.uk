@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>M1K3Y - R6 Community</title>
+    <title>M1K3Y</title>
     <style>
         :root {
             --primary-pink: #ff1493;
@@ -165,7 +165,7 @@
             font-size: 1.1em;
         }
 
-        .about-section {
+        .about-section, .accomplishments-section, .contact-section {
             background: rgba(20,20,20,0.7);
             padding: 30px;
             margin-top: 20px;
@@ -188,14 +188,6 @@
         .highlight {
             color: var(--primary-pink);
             font-weight: bold;
-        }
-
-        .accomplishments-section {
-            background: rgba(20,20,20,0.7);
-            padding: 30px;
-            margin-top: 20px;
-            border-radius: 10px;
-            backdrop-filter: blur(10px);
         }
 
         .accomplishment-list {
@@ -221,6 +213,55 @@
             box-shadow: 0 0 8px var(--primary-pink);
         }
 
+        .contact-methods {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin-top: 15px;
+        }
+
+        .contact-method {
+            display: flex;
+            align-items: center;
+            background: rgba(255, 20, 147, 0.1);
+            padding: 15px;
+            border-radius: 8px;
+            border: 1px solid rgba(255, 20, 147, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .contact-method:hover {
+            background: rgba(255, 20, 147, 0.2);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(255, 20, 147, 0.2);
+        }
+
+        .contact-icon {
+            font-size: 24px;
+            margin-right: 10px;
+            color: var(--primary-pink);
+        }
+
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .contact-platform {
+            font-weight: bold;
+            color: var(--primary-pink);
+            margin-bottom: 5px;
+        }
+
+        .contact-username {
+            color: #eee;
+        }
+
+        .contact-link {
+            text-decoration: none;
+            color: inherit;
+        }
+
         @media (max-width: 768px) {
             .header {
                 flex-direction: column;
@@ -234,6 +275,9 @@
             }
             .logo-text {
                 font-size: 2em;
+            }
+            .contact-methods {
+                flex-direction: column;
             }
         }
     </style>
@@ -286,18 +330,20 @@
                 <li class="accomplishment-item">Surviving the discontinuation of Klar R6.</li>
             </ul>
         </div>
-    </div>
 
-    <script>
-        document.getElementById('hallOfFameLink').addEventListener('click', function(e) {
-            e.preventDefault();
-            alert('Hall of Fame page coming soon! Stay tuned.');
-        });
-
-        document.getElementById('homeLink').addEventListener('click', function(e) {
-            e.preventDefault();
-            alert('You are already on the home page!');
-        });
-    </script>
-</body>
-</html>
+        <div class="contact-section">
+            <h2 class="section-title">Contact Me</h2>
+            <div class="contact-methods">
+                <a href="https://x.com/M1K3YTrade7297" target="_blank" class="contact-link">
+                    <div class="contact-method">
+                        <div class="contact-icon">𝕏</div>
+                        <div class="contact-info">
+                            <span class="contact-platform">Twitter</span>
+                            <span class="contact-username">M1K3Y</span>
+                        </div>
+                    </div>
+                </a>
+                <div class="contact-method">
+                    <div class="contact-icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M19.8919 4.80217C18.4315 4.14867 16.8603 3.6557 15.2204 3.3443C15.1798 3.3443 15.1392 3.36444 15.119 3.40431C14.9152 3.76278 14.691 4.22431 14.5379 4.58278C12.7779 4.29144 11.0203 4.29144 9.30082 4.58278C9.14766 4.2049 8.92341 3.76278 8.7196 3.40431C8.69935 3.36444 8.65879 3.3443 8.61823 3.3443C6.97823 3.6557 5.40707 4.14867 3.94669 4.80217C3.92644 4.80217 3.90619 4.82231 3.89606 4.84245C0.8063 9.47862 0.017735 13.9924 0.401362 18.4663C0.401362 18.5062 0.421613 18.5461 0.451989 18.566C2.31864 19.9463 4.12648 20.7997 5.9141 21.3735C5.95466 21.3936 5.99522 21.3735 6.01547 21.3337C6.41973 20.7799 6.78386 20.1861 7.10723 19.5526C7.12748 19.5128 7.10723 19.4729 7.06667 19.453C6.4771 19.2117 5.90778 18.9305 5.3587 18.6094C5.31814 18.5894 5.31814 18.5296 5.3587 18.5097C5.45998 18.4299 5.56126 18.3501 5.66254 18.2702C5.68279 18.2503 5.71322 18.2503 5.73347 18.2702C9.38185 19.9263 13.3221 19.9263 16.93 18.2702C16.9502 18.2503 16.9806 18.2503 17.0009 18.2702C17.1021 18.3501 17.2034 18.4299 17.3047 18
