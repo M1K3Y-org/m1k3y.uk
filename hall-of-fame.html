@@ -175,7 +175,7 @@
         .slider {
             display: flex;
             transition: transform 0.6s cubic-bezier(0.42, 0, 0.58, 1);
-            height: 450px; /* Increased height for new layout */
+            height: 450px;
         }
 
         .slide {
@@ -252,6 +252,8 @@
             transition: all 0.5s ease;
             transform-origin: center;
             opacity: 0.95;
+            position: relative;
+            padding-top: 50px;
         }
 
         .fame-box:hover {
@@ -259,20 +261,6 @@
             border-color: var(--primary-pink);
             box-shadow: 0 0 30px rgba(255, 20, 147, 0.4);
             opacity: 1;
-        }
-
-        /* Profile Box Styles */
-        .profile-box {
-            position: relative;
-            padding-top: 50px; /* Space for the profile image */
-        }
-
-        .profile-name {
-            color: var(--primary-pink);
-            font-size: 1.8em;
-            text-align: center;
-            text-shadow: 0 0 8px rgba(255, 20, 147, 0.5);
-            margin-bottom: 20px;
         }
 
         .profile-username {
@@ -308,6 +296,14 @@
             object-fit: cover;
         }
 
+        .profile-name {
+            color: var(--primary-pink);
+            font-size: 1.8em;
+            text-align: center;
+            text-shadow: 0 0 8px rgba(255, 20, 147, 0.5);
+            margin-bottom: 20px;
+        }
+
         .profile-content {
             margin-top: 30px;
             color: #eee;
@@ -315,35 +311,17 @@
             font-size: 1.1em;
         }
 
-        .profile-info {
-            margin-top: 20px;
-            font-style: italic;
-            color: #aaa;
-            text-align: right;
-            font-size: 0.9em;
-        }
-
-        /* Standard Box Styles */
-        .fame-box-title {
-            color: var(--primary-pink);
-            font-size: 1.8em;
-            margin-bottom: 15px;
+        .profile-link {
+            display: block;
             text-align: center;
-            text-shadow: 0 0 8px rgba(255, 20, 147, 0.5);
+            margin-top: 15px;
+            color: var(--primary-pink);
+            text-decoration: none;
+            transition: all 0.3s ease;
         }
 
-        .fame-box-content {
-            color: #eee;
-            line-height: 1.7;
-            font-size: 1.1em;
-        }
-
-        .fame-box-info {
-            margin-top: 20px;
-            font-style: italic;
-            color: #aaa;
-            text-align: right;
-            font-size: 0.9em;
+        .profile-link:hover {
+            text-shadow: 0 0 8px rgba(255, 20, 147, 0.7);
         }
 
         /* Animation keyframes */
@@ -427,9 +405,9 @@
                     <div class="slider-btn next-btn">→</div>
                 </div>
                 <div class="slider">
-                    <!-- Profile Slide with Image Reference -->
+                    <!-- Slide 1 -->
                     <div class="slide">
-                        <div class="fame-box profile-box">
+                        <div class="fame-box">
                             <div class="profile-username">M1K3Y</div>
                             <div class="profile-image-container">
                                 <div class="profile-image">
@@ -441,58 +419,91 @@
                                 <p>Recognized as one of the most trusted members in the R6 training community. After contributing for over a year, I've established a reputation for reliability and expertise across multiple platforms.</p>
                                 <p>My dedication to helping new players and maintaining high standards has earned respect from both users and providers alike.</p>
                             </div>
-                            <div class="profile-info">Community Member since 2024</div>
                         </div>
                     </div>
                     
+                    <!-- Slide 2 - SUFFIX -->
                     <div class="slide">
                         <div class="fame-box">
-                            <h2 class="fame-box-title">Elite Tester Status</h2>
-                            <div class="fame-box-content">
-                                <p>Awarded exclusive Elite Tester status for multiple top-tier Chair providers. This distinction is only given to the most trusted and skilled community members who have demonstrated exceptional feedback quality.</p>
-                                <p>My testing has helped improve numerous products and services within the community.</p>
+                            <div class="profile-username">SUFFIX</div>
+                            <div class="profile-image-container">
+                                <div class="profile-image">
+                                    <img src="suffix.png" alt="SUFFIX Profile">
+                                </div>
                             </div>
-                            <div class="fame-box-info">Status achieved - October 2024</div>
+                            <h2 class="profile-name">SUFFIX</h2>
+                            <div class="profile-content">
+                                <p>Another well known and trusted member for over 3 years he was well known for being one of the first big namer DMA's in com and now is the owner of DYSPHORIA network.</p>
+                                <a href="https://t.me/DysphoriaRedirect" target="_blank" class="profile-link">https://t.me/DysphoriaRedirect</a>
+                            </div>
                         </div>
                     </div>
+                    
+                    <!-- Slide 3 - DYNO -->
                     <div class="slide">
                         <div class="fame-box">
-                            <h2 class="fame-box-title">Staff Leadership</h2>
-                            <div class="fame-box-content">
-                                <p>Promoted to leadership positions within prestigious R6 community staff teams. These roles were awarded based on consistent performance and dedication to maintaining community standards.</p>
-                                <p>My leadership has contributed to improved organization and user experience for hundreds of community members.</p>
+                            <div class="profile-username">DYNO</div>
+                            <div class="profile-image-container">
+                                <div class="profile-image">
+                                    <img src="dyno.png" alt="DYNO Profile">
+                                </div>
                             </div>
-                            <div class="fame-box-info">Leadership position - November 2024</div>
+                            <h2 class="profile-name">DYNO</h2>
+                            <div class="profile-content">
+                                <p>Dyno has been well known in r6 com for over 1 and a half years now mainly for being the current owner of the Official DMA Discord server.</p>
+                                <p>He is also well known for overspending on accounts he has gotten banned such as Dyno.tm and many other it is estimated that he has gotten over 1.5K in accounts banned as a DMA user.</p>
+                            </div>
                         </div>
                     </div>
+                    
+                    <!-- Slide 4 -->
                     <div class="slide">
                         <div class="fame-box">
-                            <h2 class="fame-box-title">Klar R6 Legacy</h2>
-                            <div class="fame-box-content">
+                            <div class="profile-username">M1K3Y</div>
+                            <div class="profile-image-container">
+                                <div class="profile-image">
+                                    <img src="m1k3y.png" alt="M1K3Y Profile">
+                                </div>
+                            </div>
+                            <h2 class="profile-name">Klar R6 Legacy</h2>
+                            <div class="profile-content">
                                 <p>One of the few recognized veterans who successfully transitioned through the discontinuation of Klar R6. This experience has provided me with unique insights and historical knowledge valued throughout the community.</p>
                                 <p>My adaptability during this significant change demonstrated resilience and commitment to the R6 ecosystem.</p>
                             </div>
-                            <div class="fame-box-info">Legacy status - December 2024</div>
                         </div>
                     </div>
+                    
+                    <!-- Slide 5 -->
                     <div class="slide">
                         <div class="fame-box">
-                            <h2 class="fame-box-title">Training Excellence</h2>
-                            <div class="fame-box-content">
+                            <div class="profile-username">M1K3Y</div>
+                            <div class="profile-image-container">
+                                <div class="profile-image">
+                                    <img src="m1k3y.png" alt="M1K3Y Profile">
+                                </div>
+                            </div>
+                            <h2 class="profile-name">Training Excellence</h2>
+                            <div class="profile-content">
                                 <p>Recognized for completing and evaluating over 100 specialized quizzes and training modules from various trusted cabineteers. This comprehensive knowledge base has established me as a reliable source for training information.</p>
                                 <p>My experience spans multiple disciplines and training methodologies within the R6 community.</p>
                             </div>
-                            <div class="fame-box-info">Excellence award - January 2025</div>
                         </div>
                     </div>
+                    
+                    <!-- Slide 6 -->
                     <div class="slide">
                         <div class="fame-box">
-                            <h2 class="fame-box-title">Community Trust Award</h2>
-                            <div class="fame-box-content">
+                            <div class="profile-username">M1K3Y</div>
+                            <div class="profile-image-container">
+                                <div class="profile-image">
+                                    <img src="m1k3y.png" alt="M1K3Y Profile">
+                                </div>
+                            </div>
+                            <h2 class="profile-name">Community Trust Award</h2>
+                            <div class="profile-content">
                                 <p>Received the prestigious Community Trust Award, voted by both providers and community members. This recognition highlights my consistent integrity, helpfulness, and dedication to the R6 community.</p>
                                 <p>This award represents the culmination of my contributions and the trust I've built throughout my involvement.</p>
                             </div>
-                            <div class="fame-box-info">Award received - February 2025</div>
                         </div>
                     </div>
                 </div>
@@ -545,12 +556,7 @@
                 });
                 
                 // Animate current slide
-                let activeElement;
-                if (currentSlide === 0) {
-                    activeElement = slides[currentSlide].querySelector('.profile-box');
-                } else {
-                    activeElement = slides[currentSlide].querySelector('.fame-box');
-                }
+                const activeElement = slides[currentSlide].querySelector('.fame-box');
                 activeElement.style.animation = 'fadeIn 0.6s ease forwards, glow 2s infinite alternate';
             }
 
