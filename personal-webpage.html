@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>M1K3Y - R6 Community</title>
+    <style>
+        :root {
+            --primary-pink: #ff1493;
+            --secondary-black: #0a0a0a;
+            --accent-pink: #ff69b4;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: var(--secondary-black);
+            color: white;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+            background: linear-gradient(to right, rgba(10,10,10,0.8), rgba(10,10,10,0.9));
+            border-bottom: 2px solid var(--primary-pink);
+        }
+
+        .logo-container {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .logo-container img {
+            max-width: 100%;
+            height: auto;
+            max-height: 300px;
+            object-fit: contain;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 20px;
+            width: 100%;
+        }
+
+        .nav-links-left {
+            display: flex;
+            gap: 20px;
+        }
+
+        .nav-links-right {
+            margin-left: auto;
+        }
+
+        .nav-link {
+            color: var(--primary-pink);
+            text-decoration: none;
+            font-weight: bold;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background-color: var(--primary-pink);
+            transition: width 0.3s ease;
+        }
+
+        .nav-link:hover {
+            color: var(--accent-pink);
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        .content {
+            background: rgba(20,20,20,0.7);
+            padding: 30px;
+            margin-top: 20px;
+            border-radius: 10px;
+            backdrop-filter: blur(10px);
+        }
+
+        .hello-container {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .hello-title {
+            display: inline-block;
+            font-size: 2em;
+            color: var(--primary-pink);
+            padding: 10px 30px;
+            border: 2px solid var(--primary-pink);
+            border-radius: 5px;
+            background: rgba(255, 20, 147, 0.1);
+            box-shadow: 0 0 15px rgba(255, 20, 147, 0.3);
+        }
+
+        .welcome-message {
+            text-align: center;
+            color: #ddd;
+            margin-top: 15px;
+        }
+
+        .about-section {
+            background: rgba(20,20,20,0.7);
+            padding: 30px;
+            margin-top: 20px;
+            border-radius: 10px;
+            backdrop-filter: blur(10px);
+        }
+
+        .section-title {
+            color: var(--primary-pink);
+            margin-bottom: 15px;
+            border-bottom: 1px solid var(--primary-pink);
+            padding-bottom: 5px;
+        }
+
+        @media (max-width: 768px) {
+            .header {
+                flex-direction: column;
+            }
+            .nav-links {
+                flex-direction: column;
+                align-items: center;
+            }
+            .nav-links-right {
+                margin-left: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="logo-container">
+            <img src="m1k3y.gif" alt="M1K3Y Logo" />
+        </div>
+
+        <div class="header">
+            <div class="nav-links">
+                <div class="nav-links-left">
+                    <a href="#" class="nav-link" id="homeLink">Home</a>
+                </div>
+                <div class="nav-links-right">
+                    <a href="#" class="nav-link" id="hallOfFameLink">Hall of Fame</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="content">
+            <div class="hello-container">
+                <h2 class="hello-title">Hello</h2>
+            </div>
+            <p class="welcome-message">Welcome to my webpage! Feel free to check out my Hall of Fame and learn more about my journey in the R6 community.</p>
+        </div>
+
+        <div class="about-section">
+            <h2 class="section-title">About Me</h2>
+            <p>Fill in later</p>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('hallOfFameLink').addEventListener('click', function(e) {
+            e.preventDefault();
+            alert('Hall of Fame page coming soon! Stay tuned.');
+        });
+
+        document.getElementById('homeLink').addEventListener('click', function(e) {
+            e.preventDefault();
+            alert('You are already on the home page!');
+        });
+    </script>
+</body>
+</html>
