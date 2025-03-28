@@ -175,7 +175,7 @@
         .slider {
             display: flex;
             transition: transform 0.6s cubic-bezier(0.42, 0, 0.58, 1);
-            height: 350px;
+            height: 450px; /* Increased height for new layout */
         }
 
         .slide {
@@ -261,6 +261,69 @@
             opacity: 1;
         }
 
+        /* Profile Box Styles */
+        .profile-box {
+            position: relative;
+            padding-top: 50px; /* Space for the profile image */
+        }
+
+        .profile-name {
+            color: var(--primary-pink);
+            font-size: 1.8em;
+            text-align: center;
+            text-shadow: 0 0 8px rgba(255, 20, 147, 0.5);
+            margin-bottom: 20px;
+        }
+
+        .profile-username {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            color: var(--primary-pink);
+            font-weight: bold;
+            font-size: 1.4em;
+        }
+
+        .profile-image-container {
+            position: absolute;
+            top: -50px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 5;
+        }
+
+        .profile-image {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            border: 3px solid var(--primary-pink);
+            background-color: #333;
+            box-shadow: 0 0 15px rgba(255, 20, 147, 0.5);
+            overflow: hidden;
+        }
+
+        .profile-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .profile-content {
+            margin-top: 30px;
+            color: #eee;
+            line-height: 1.7;
+            font-size: 1.1em;
+        }
+
+        .profile-info {
+            margin-top: 20px;
+            font-style: italic;
+            color: #aaa;
+            text-align: right;
+            font-size: 0.9em;
+        }
+
+        /* Standard Box Styles */
         .fame-box-title {
             color: var(--primary-pink);
             font-size: 1.8em;
@@ -317,6 +380,13 @@
                 height: 40px;
                 font-size: 18px;
             }
+            .profile-image {
+                width: 80px;
+                height: 80px;
+            }
+            .profile-username {
+                font-size: 1.2em;
+            }
         }
     </style>
 </head>
@@ -357,16 +427,24 @@
                     <div class="slider-btn next-btn">→</div>
                 </div>
                 <div class="slider">
+                    <!-- Profile Slide with Image Reference -->
                     <div class="slide">
-                        <div class="fame-box">
-                            <h2 class="fame-box-title">Community Recognition</h2>
-                            <div class="fame-box-content">
+                        <div class="fame-box profile-box">
+                            <div class="profile-username">M1K3Y</div>
+                            <div class="profile-image-container">
+                                <div class="profile-image">
+                                    <img src="m1k3y.png" alt="M1K3Y Profile">
+                                </div>
+                            </div>
+                            <h2 class="profile-name">M1K3Y</h2>
+                            <div class="profile-content">
                                 <p>Recognized as one of the most trusted members in the R6 training community. After contributing for over a year, I've established a reputation for reliability and expertise across multiple platforms.</p>
                                 <p>My dedication to helping new players and maintaining high standards has earned respect from both users and providers alike.</p>
                             </div>
-                            <div class="fame-box-info">Recognition achieved - August 2024</div>
+                            <div class="profile-info">Community Member since 2024</div>
                         </div>
                     </div>
+                    
                     <div class="slide">
                         <div class="fame-box">
                             <h2 class="fame-box-title">Elite Tester Status</h2>
@@ -467,8 +545,13 @@
                 });
                 
                 // Animate current slide
-                const activeSlide = slides[currentSlide].querySelector('.fame-box');
-                activeSlide.style.animation = 'fadeIn 0.6s ease forwards, glow 2s infinite alternate';
+                let activeElement;
+                if (currentSlide === 0) {
+                    activeElement = slides[currentSlide].querySelector('.profile-box');
+                } else {
+                    activeElement = slides[currentSlide].querySelector('.fame-box');
+                }
+                activeElement.style.animation = 'fadeIn 0.6s ease forwards, glow 2s infinite alternate';
             }
 
             function nextSlide() {
