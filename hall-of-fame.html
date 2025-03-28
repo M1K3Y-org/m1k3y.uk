@@ -1,1 +1,512 @@
-hi
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>M1K3Y - Hall of Fame</title>
+    <style>
+        :root {
+            --primary-pink: #ff1493;
+            --secondary-black: #0a0a0a;
+            --accent-pink: #ff69b4;
+            --success-green: #4BB543;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: black;
+            color: white;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 5px 20px 20px 20px;
+        }
+
+        .header-container {
+            display: flex;
+            flex-direction: column;
+            background: linear-gradient(to right, rgba(0,0,0,0.9), rgba(0,0,0,0.95));
+            border-bottom: 2px solid var(--primary-pink);
+            margin-top: 0;
+        }
+
+        .top-logo {
+            text-align: center;
+            padding: 0;
+            margin: 0;
+            padding-top: 10px;
+        }
+
+        .logo-text {
+            font-size: 2.2em;
+            font-weight: bold;
+            color: var(--primary-pink);
+            letter-spacing: 3px;
+            text-shadow: 0 0 10px var(--primary-pink);
+            position: relative;
+            display: inline-block;
+            animation: textGlow 2s infinite alternate;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+
+        @keyframes textGlow {
+            0% {
+                text-shadow: 0 0 5px var(--primary-pink), 0 0 10px var(--primary-pink);
+                color: var(--primary-pink);
+            }
+            100% {
+                text-shadow: 0 0 8px var(--accent-pink), 0 0 15px var(--accent-pink);
+                color: var(--accent-pink);
+            }
+        }
+
+        .logo-text span {
+            display: inline-block;
+            animation: flowUp 2s infinite alternate;
+            animation-delay: calc(0.2s * var(--i));
+        }
+
+        @keyframes flowUp {
+            0% {
+                transform: translateY(0px);
+            }
+            100% {
+                transform: translateY(-5px);
+            }
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 5px 15px 10px 15px;
+            margin-top: 0;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 20px;
+            width: 100%;
+        }
+
+        .nav-links-left {
+            display: flex;
+            gap: 20px;
+        }
+
+        .nav-links-right {
+            margin-left: auto;
+        }
+
+        .nav-link {
+            color: var(--primary-pink);
+            text-decoration: none;
+            font-weight: bold;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background-color: var(--primary-pink);
+            transition: width 0.3s ease;
+        }
+
+        .nav-link:hover {
+            color: var(--accent-pink);
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        .active::after {
+            width: 100%;
+        }
+
+        .content {
+            background: black;
+            padding: 30px;
+            margin-top: 20px;
+            border-radius: 10px;
+            border: 1px solid rgba(255, 20, 147, 0.2);
+        }
+
+        .hall-of-fame-title {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .hall-of-fame-title h1 {
+            font-size: 2.5em;
+            color: var(--primary-pink);
+            text-shadow: 0 0 10px rgba(255, 20, 147, 0.5);
+            margin-bottom: 10px;
+        }
+
+        .hall-of-fame-title p {
+            color: #ddd;
+            font-size: 1.1em;
+        }
+
+        /* Slider Styles */
+        .slider-container {
+            position: relative;
+            margin: 40px 0;
+            overflow: hidden;
+            padding: 20px 0;
+        }
+
+        .slider {
+            display: flex;
+            transition: transform 0.6s cubic-bezier(0.42, 0, 0.58, 1);
+            height: 350px;
+        }
+
+        .slide {
+            min-width: 100%;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .slider-navigation {
+            position: absolute;
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 10;
+        }
+
+        .slider-btn {
+            background-color: rgba(0, 0, 0, 0.7);
+            color: var(--primary-pink);
+            border: 2px solid var(--primary-pink);
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 24px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 0 10px rgba(255, 20, 147, 0.3);
+        }
+
+        .slider-btn:hover {
+            background-color: rgba(255, 20, 147, 0.2);
+            transform: scale(1.1);
+            box-shadow: 0 0 15px rgba(255, 20, 147, 0.5);
+        }
+
+        .slider-dots {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+            gap: 10px;
+        }
+
+        .slider-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background-color: #444;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .slider-dot.active {
+            background-color: var(--primary-pink);
+            transform: scale(1.2);
+            box-shadow: 0 0 10px rgba(255, 20, 147, 0.5);
+        }
+
+        /* Fame Box Styles */
+        .fame-box {
+            background: rgba(20, 20, 20, 0.8);
+            border: 2px solid rgba(255, 20, 147, 0.3);
+            border-radius: 15px;
+            padding: 30px;
+            width: 80%;
+            max-width: 800px;
+            box-shadow: 0 0 20px rgba(255, 20, 147, 0.2);
+            transition: all 0.5s ease;
+            transform-origin: center;
+            opacity: 0.95;
+        }
+
+        .fame-box:hover {
+            transform: scale(1.02);
+            border-color: var(--primary-pink);
+            box-shadow: 0 0 30px rgba(255, 20, 147, 0.4);
+            opacity: 1;
+        }
+
+        .fame-box-title {
+            color: var(--primary-pink);
+            font-size: 1.8em;
+            margin-bottom: 15px;
+            text-align: center;
+            text-shadow: 0 0 8px rgba(255, 20, 147, 0.5);
+        }
+
+        .fame-box-content {
+            color: #eee;
+            line-height: 1.7;
+            font-size: 1.1em;
+        }
+
+        .fame-box-info {
+            margin-top: 20px;
+            font-style: italic;
+            color: #aaa;
+            text-align: right;
+            font-size: 0.9em;
+        }
+
+        /* Animation keyframes */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes glow {
+            0% { box-shadow: 0 0 10px rgba(255, 20, 147, 0.3); }
+            100% { box-shadow: 0 0 20px rgba(255, 20, 147, 0.6); }
+        }
+
+        @media (max-width: 768px) {
+            .header {
+                flex-direction: column;
+            }
+            .nav-links {
+                flex-direction: column;
+                align-items: center;
+            }
+            .nav-links-right {
+                margin-left: 0;
+            }
+            .logo-text {
+                font-size: 2em;
+            }
+            .fame-box {
+                width: 95%;
+                padding: 20px;
+            }
+            .slider-btn {
+                width: 40px;
+                height: 40px;
+                font-size: 18px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header-container">
+            <div class="top-logo">
+                <h1 class="logo-text">
+                    <span style="--i:1">M</span>
+                    <span style="--i:2">1</span>
+                    <span style="--i:3">K</span>
+                    <span style="--i:4">3</span>
+                    <span style="--i:5">Y</span>
+                </h1>
+            </div>
+
+            <div class="header">
+                <div class="nav-links">
+                    <div class="nav-links-left">
+                        <a href="index.html" class="nav-link" id="homeLink">Home</a>
+                    </div>
+                    <div class="nav-links-right">
+                        <a href="hall-of-fame.html" class="nav-link active" id="hallOfFameLink">Hall of Fame</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="content">
+            <div class="hall-of-fame-title">
+                <h1>Hall of Fame</h1>
+                <p>Recognition and achievements from across the R6 community</p>
+            </div>
+
+            <div class="slider-container">
+                <div class="slider-navigation">
+                    <div class="slider-btn prev-btn">←</div>
+                    <div class="slider-btn next-btn">→</div>
+                </div>
+                <div class="slider">
+                    <div class="slide">
+                        <div class="fame-box">
+                            <h2 class="fame-box-title">Community Recognition</h2>
+                            <div class="fame-box-content">
+                                <p>Recognized as one of the most trusted members in the R6 training community. After contributing for over a year, I've established a reputation for reliability and expertise across multiple platforms.</p>
+                                <p>My dedication to helping new players and maintaining high standards has earned respect from both users and providers alike.</p>
+                            </div>
+                            <div class="fame-box-info">Recognition achieved - August 2024</div>
+                        </div>
+                    </div>
+                    <div class="slide">
+                        <div class="fame-box">
+                            <h2 class="fame-box-title">Elite Tester Status</h2>
+                            <div class="fame-box-content">
+                                <p>Awarded exclusive Elite Tester status for multiple top-tier Chair providers. This distinction is only given to the most trusted and skilled community members who have demonstrated exceptional feedback quality.</p>
+                                <p>My testing has helped improve numerous products and services within the community.</p>
+                            </div>
+                            <div class="fame-box-info">Status achieved - October 2024</div>
+                        </div>
+                    </div>
+                    <div class="slide">
+                        <div class="fame-box">
+                            <h2 class="fame-box-title">Staff Leadership</h2>
+                            <div class="fame-box-content">
+                                <p>Promoted to leadership positions within prestigious R6 community staff teams. These roles were awarded based on consistent performance and dedication to maintaining community standards.</p>
+                                <p>My leadership has contributed to improved organization and user experience for hundreds of community members.</p>
+                            </div>
+                            <div class="fame-box-info">Leadership position - November 2024</div>
+                        </div>
+                    </div>
+                    <div class="slide">
+                        <div class="fame-box">
+                            <h2 class="fame-box-title">Klar R6 Legacy</h2>
+                            <div class="fame-box-content">
+                                <p>One of the few recognized veterans who successfully transitioned through the discontinuation of Klar R6. This experience has provided me with unique insights and historical knowledge valued throughout the community.</p>
+                                <p>My adaptability during this significant change demonstrated resilience and commitment to the R6 ecosystem.</p>
+                            </div>
+                            <div class="fame-box-info">Legacy status - December 2024</div>
+                        </div>
+                    </div>
+                    <div class="slide">
+                        <div class="fame-box">
+                            <h2 class="fame-box-title">Training Excellence</h2>
+                            <div class="fame-box-content">
+                                <p>Recognized for completing and evaluating over 100 specialized quizzes and training modules from various trusted cabineteers. This comprehensive knowledge base has established me as a reliable source for training information.</p>
+                                <p>My experience spans multiple disciplines and training methodologies within the R6 community.</p>
+                            </div>
+                            <div class="fame-box-info">Excellence award - January 2025</div>
+                        </div>
+                    </div>
+                    <div class="slide">
+                        <div class="fame-box">
+                            <h2 class="fame-box-title">Community Trust Award</h2>
+                            <div class="fame-box-content">
+                                <p>Received the prestigious Community Trust Award, voted by both providers and community members. This recognition highlights my consistent integrity, helpfulness, and dedication to the R6 community.</p>
+                                <p>This award represents the culmination of my contributions and the trust I've built throughout my involvement.</p>
+                            </div>
+                            <div class="fame-box-info">Award received - February 2025</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="slider-dots"></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const slider = document.querySelector('.slider');
+            const slides = document.querySelectorAll('.slide');
+            const dotsContainer = document.querySelector('.slider-dots');
+            const prevBtn = document.querySelector('.prev-btn');
+            const nextBtn = document.querySelector('.next-btn');
+            let currentSlide = 0;
+            const slideCount = slides.length;
+
+            // Create dots based on number of slides
+            slides.forEach((_, index) => {
+                const dot = document.createElement('div');
+                dot.classList.add('slider-dot');
+                if (index === 0) dot.classList.add('active');
+                dot.addEventListener('click', () => goToSlide(index));
+                dotsContainer.appendChild(dot);
+            });
+
+            const dots = document.querySelectorAll('.slider-dot');
+
+            // Initialize
+            updateSlider();
+
+            // Event listeners
+            prevBtn.addEventListener('click', prevSlide);
+            nextBtn.addEventListener('click', nextSlide);
+
+            // Home link functionality
+            document.getElementById('homeLink').addEventListener('click', function(e) {
+                e.preventDefault();
+                window.location.href = 'index.html';
+            });
+
+            // Functions
+            function updateSlider() {
+                slider.style.transform = `translateX(-${currentSlide * 100}%)`;
+                
+                // Update dots
+                dots.forEach((dot, index) => {
+                    dot.classList.toggle('active', index === currentSlide);
+                });
+                
+                // Animate current slide
+                const activeSlide = slides[currentSlide].querySelector('.fame-box');
+                activeSlide.style.animation = 'fadeIn 0.6s ease forwards, glow 2s infinite alternate';
+            }
+
+            function nextSlide() {
+                currentSlide = (currentSlide + 1) % slideCount;
+                updateSlider();
+            }
+
+            function prevSlide() {
+                currentSlide = (currentSlide - 1 + slideCount) % slideCount;
+                updateSlider();
+            }
+
+            function goToSlide(index) {
+                currentSlide = index;
+                updateSlider();
+            }
+
+            // Auto-advance slides every 8 seconds
+            let slideInterval = setInterval(nextSlide, 8000);
+
+            // Pause auto-advance on hover
+            slider.addEventListener('mouseenter', () => {
+                clearInterval(slideInterval);
+            });
+
+            slider.addEventListener('mouseleave', () => {
+                slideInterval = setInterval(nextSlide, 8000);
+            });
+
+            // Keyboard navigation
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'ArrowLeft') {
+                    prevSlide();
+                } else if (e.key === 'ArrowRight') {
+                    nextSlide();
+                }
+            });
+        });
+    </script>
+</body>
+</html>
