@@ -9,6 +9,7 @@
             --primary-pink: #ff1493;
             --secondary-black: #0a0a0a;
             --accent-pink: #ff69b4;
+            --success-green: #4BB543;
         }
 
         * {
@@ -28,6 +29,33 @@
             max-width: 1200px;
             margin: 0 auto;
             padding: 5px 20px 20px 20px;
+        }
+
+        .notification {
+            position: fixed;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: rgba(0, 0, 0, 0.8);
+            color: white;
+            padding: 12px 24px;
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            z-index: 1000;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .notification.show {
+            opacity: 1;
+        }
+
+        .notification .check {
+            color: var(--success-green);
+            font-size: 18px;
         }
 
         .header-container {
@@ -233,6 +261,7 @@
             flex: 1;
             min-width: 250px;
             text-align: center;
+            cursor: pointer;
         }
 
         .contact-method:hover {
@@ -286,6 +315,11 @@
     </style>
 </head>
 <body>
+    <div id="notification" class="notification">
+        <span class="check">✓</span>
+        <span id="notification-text">Discord username copied!</span>
+    </div>
+
     <div class="container">
         <div class="header-container">
             <div class="top-logo">
@@ -344,7 +378,7 @@
                         <div class="contact-username">M1K3Y</div>
                     </div>
                 </a>
-                <div class="contact-method">
+                <div class="contact-method" id="discord-contact">
                     <div class="contact-icon">
                         <svg width="28" height="28" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M19.8919 4.80217C18.4315 4.14867 16.8603 3.6557 15.2204 3.3443C15.1798 3.3443 15.1392 3.36444 15.119 3.40431C14.9152 3.76278 14.691 4.22431 14.5379 4.58278C12.7779 4.29144 11.0203 4.29144 9.30082 4.58278C9.14766 4.2049 8.92341 3.76278 8.7196 3.40431C8.69935 3.36444 8.65879 3.3443 8.61823 3.3443C6.97823 3.6557 5.40707 4.14867 3.94669 4.80217C3.92644 4.80217 3.90619 4.82231 3.89606 4.84245C0.8063 9.47862 0.017735 13.9924 0.401362 18.4663C0.401362 18.5062 0.421613 18.5461 0.451989 18.566C2.31864 19.9463 4.12648 20.7997 5.9141 21.3735C5.95466 21.3936 5.99522 21.3735 6.01547 21.3337C6.41973 20.7799 6.78386 20.1861 7.10723 19.5526C7.12748 19.5128 7.10723 19.4729 7.06667 19.453C6.4771 19.2117 5.90778 18.9305 5.3587 18.6094C5.31814 18.5894 5.31814 18.5296 5.3587 18.5097C5.45998 18.4299 5.56126 18.3501 5.66254 18.2702C5.68279 18.2503 5.71322 18.2503 5.73347 18.2702C9.38185 19.9263 13.3221 19.9263 16.93 18.2702C16.9502 18.2503 16.9806 18.2503 17.0009 18.2702C17.1021 18.3501 17.2034 18.4299 17.3047 18.5097C17.3453 18.5296 17.3453 18.5894 17.3047 18.6094C16.7556 18.9305 16.1863 19.2117 15.5967 19.453C15.5562 19.4729 15.5359 19.5128 15.5562 19.5526C15.8795 20.1861 16.2437 20.7799 16.6479 21.3337C16.6682 21.3735 16.7087 21.3936 16.7493 21.3735C18.5571 20.7997 20.3649 19.9463 22.2316 18.566C22.262 18.5461 22.2822 18.5062 22.2822 18.4663C22.7271 13.2188 21.4691 8.74477 19.9478 4.84245C19.9377 4.82231 19.9174 4.80217 19.8919 4.80217ZM7.83035 15.7926C6.75488 15.7926 5.85879 14.8196 5.85879 13.6407C5.85879 12.4619 6.73463 11.4889 7.83035 11.4889C8.93621 11.4889 9.83229 12.4818 9.81204 13.6407C9.81204 14.8196 8.9261 15.7926 7.83035 15.7926ZM16.0102 15.7926C14.9348 15.7926 14.0387 14.8196 14.0387 13.6407C14.0387 12.4619 14.9145 11.4889 16.0102 11.4889C17.1161 11.4889 18.0122 12.4818 17.9919 13.6407C17.9919 14.8196 17.1161 15.7926 16.0102 15.7926Z" fill="#ff1493"/>
@@ -366,6 +400,24 @@
         document.getElementById('homeLink').addEventListener('click', function(e) {
             e.preventDefault();
             alert('You are already on the home page!');
+        });
+
+        // Discord username copy functionality
+        document.getElementById('discord-contact').addEventListener('click', function() {
+            const username = "i__m1k3y__i";
+            navigator.clipboard.writeText(username).then(function() {
+                // Show notification
+                const notification = document.getElementById('notification');
+                notification.classList.add('show');
+                
+                // Hide notification after 3 seconds
+                setTimeout(function() {
+                    notification.classList.remove('show');
+                }, 3000);
+            }).catch(function(err) {
+                console.error('Could not copy text: ', err);
+                alert('Failed to copy Discord username. Please try again.');
+            });
         });
     </script>
 </body>
