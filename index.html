@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>M1K3Y - Hall of Fame</title>
+    <title>M1K3Y - R6 Community</title>
     <style>
         :root {
             --primary-pink: #ff1493;
@@ -20,7 +20,7 @@
 
         body {
             font-family: 'Arial', sans-serif;
-            background-color: black;
+            background-color: var(--secondary-black);
             color: white;
             line-height: 1.6;
         }
@@ -31,10 +31,37 @@
             padding: 5px 20px 20px 20px;
         }
 
+        .notification {
+            position: fixed;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: rgba(0, 0, 0, 0.8);
+            color: white;
+            padding: 12px 24px;
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            z-index: 1000;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .notification.show {
+            opacity: 1;
+        }
+
+        .notification .check {
+            color: var(--success-green);
+            font-size: 18px;
+        }
+
         .header-container {
             display: flex;
             flex-direction: column;
-            background: linear-gradient(to right, rgba(0,0,0,0.9), rgba(0,0,0,0.95));
+            background: linear-gradient(to right, rgba(10,10,10,0.8), rgba(10,10,10,0.9));
             border-bottom: 2px solid var(--primary-pink);
             margin-top: 0;
         }
@@ -135,204 +162,136 @@
             width: 100%;
         }
 
-        .active::after {
-            width: 100%;
-        }
-
         .content {
-            background: black;
+            background: rgba(20,20,20,0.7);
             padding: 30px;
             margin-top: 20px;
             border-radius: 10px;
-            border: 1px solid rgba(255, 20, 147, 0.2);
+            backdrop-filter: blur(10px);
         }
 
-        .hall-of-fame-title {
+        .hello-container {
             text-align: center;
-            margin-bottom: 30px;
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, rgba(255,20,147,0.1), rgba(255,105,180,0.2));
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 0 20px rgba(255, 20, 147, 0.2);
         }
 
-        .hall-of-fame-title h1 {
+        .hello-title {
+            display: inline-block;
             font-size: 2.5em;
             color: var(--primary-pink);
             text-shadow: 0 0 10px rgba(255, 20, 147, 0.5);
-            margin-bottom: 10px;
+            margin-bottom: 15px;
         }
 
-        .hall-of-fame-title p {
+        .welcome-message {
+            text-align: center;
             color: #ddd;
             font-size: 1.1em;
         }
 
-        /* Slider Styles */
-        .slider-container {
-            position: relative;
-            margin: 40px 0;
-            overflow: hidden;
-            padding: 20px 0;
-        }
-
-        .slider {
-            display: flex;
-            transition: transform 0.6s cubic-bezier(0.42, 0, 0.58, 1);
-            height: 450px;
-        }
-
-        .slide {
-            min-width: 100%;
-            padding: 20px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .slider-navigation {
-            position: absolute;
-            display: flex;
-            justify-content: space-between;
-            width: 100%;
-            top: 50%;
-            transform: translateY(-50%);
-            z-index: 10;
-        }
-
-        .slider-btn {
-            background-color: rgba(0, 0, 0, 0.7);
-            color: var(--primary-pink);
-            border: 2px solid var(--primary-pink);
-            border-radius: 50%;
-            width: 50px;
-            height: 50px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-size: 24px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            box-shadow: 0 0 10px rgba(255, 20, 147, 0.3);
-        }
-
-        .slider-btn:hover {
-            background-color: rgba(255, 20, 147, 0.2);
-            transform: scale(1.1);
-            box-shadow: 0 0 15px rgba(255, 20, 147, 0.5);
-        }
-
-        .slider-dots {
-            display: flex;
-            justify-content: center;
-            margin-top: 20px;
-            gap: 10px;
-        }
-
-        .slider-dot {
-            width: 12px;
-            height: 12px;
-            border-radius: 50%;
-            background-color: #444;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        .slider-dot.active {
-            background-color: var(--primary-pink);
-            transform: scale(1.2);
-            box-shadow: 0 0 10px rgba(255, 20, 147, 0.5);
-        }
-
-        /* Fame Box Styles */
-        .fame-box {
-            background: rgba(20, 20, 20, 0.8);
-            border: 2px solid rgba(255, 20, 147, 0.3);
-            border-radius: 15px;
+        .about-section, .accomplishments-section, .contact-section {
+            background: rgba(20,20,20,0.7);
             padding: 30px;
-            width: 80%;
-            max-width: 800px;
-            box-shadow: 0 0 20px rgba(255, 20, 147, 0.2);
-            transition: all 0.5s ease;
-            transform-origin: center;
-            opacity: 0.95;
-            position: relative;
-            padding-top: 50px;
+            margin-top: 20px;
+            border-radius: 10px;
+            backdrop-filter: blur(10px);
         }
 
-        .fame-box:hover {
-            transform: scale(1.02);
-            border-color: var(--primary-pink);
-            box-shadow: 0 0 30px rgba(255, 20, 147, 0.4);
-            opacity: 1;
+        .section-title {
+            color: var(--primary-pink);
+            margin-bottom: 15px;
+            border-bottom: 1px solid var(--primary-pink);
+            padding-bottom: 5px;
         }
 
-        .profile-username {
-            position: absolute;
-            top: 20px;
-            left: 20px;
+        .about-content {
+            line-height: 1.8;
+            color: #eee;
+        }
+
+        .highlight {
             color: var(--primary-pink);
             font-weight: bold;
-            font-size: 1.4em;
         }
 
-        .profile-image-container {
+        .accomplishment-list {
+            list-style-type: none;
+            padding-left: 0;
+        }
+
+        .accomplishment-item {
+            margin-bottom: 15px;
+            position: relative;
+            padding-left: 25px;
+        }
+
+        .accomplishment-item:before {
+            content: "";
             position: absolute;
-            top: -50px;
-            left: 50%;
-            transform: translateX(-50%);
-            z-index: 5;
-        }
-
-        .profile-image {
-            width: 100px;
-            height: 100px;
+            left: 0;
+            top: 8px;
+            width: 10px;
+            height: 10px;
+            background-color: var(--primary-pink);
             border-radius: 50%;
-            border: 3px solid var(--primary-pink);
-            background-color: #333;
-            box-shadow: 0 0 15px rgba(255, 20, 147, 0.5);
-            overflow: hidden;
+            box-shadow: 0 0 8px var(--primary-pink);
         }
 
-        .profile-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
+        .contact-methods {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin-top: 15px;
         }
 
-        .profile-name {
-            color: var(--primary-pink);
-            font-size: 1.8em;
+        .contact-method {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background: rgba(40, 15, 30, 0.8);
+            padding: 25px;
+            border-radius: 8px;
+            border: 1px solid rgba(255, 20, 147, 0.3);
+            transition: all 0.3s ease;
+            flex: 1;
+            min-width: 250px;
             text-align: center;
-            text-shadow: 0 0 8px rgba(255, 20, 147, 0.5);
-            margin-bottom: 20px;
+            cursor: pointer;
         }
 
-        .profile-content {
-            margin-top: 30px;
+        .contact-method:hover {
+            background: rgba(60, 20, 40, 0.8);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(255, 20, 147, 0.2);
+        }
+
+        .contact-icon {
+            font-size: 28px;
+            margin-bottom: 15px;
+            color: var(--primary-pink);
+        }
+
+        .contact-platform {
+            font-weight: bold;
+            color: var(--primary-pink);
+            margin-bottom: 5px;
+            font-size: 1.2em;
+        }
+
+        .contact-username {
             color: #eee;
-            line-height: 1.7;
             font-size: 1.1em;
         }
 
-        .profile-link {
-            display: block;
-            text-align: center;
-            margin-top: 15px;
-            color: var(--primary-pink);
+        .contact-link {
             text-decoration: none;
-            transition: all 0.3s ease;
-        }
-
-        .profile-link:hover {
-            text-shadow: 0 0 8px rgba(255, 20, 147, 0.7);
-        }
-
-        /* Animation keyframes */
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        @keyframes glow {
-            0% { box-shadow: 0 0 10px rgba(255, 20, 147, 0.3); }
-            100% { box-shadow: 0 0 20px rgba(255, 20, 147, 0.6); }
+            color: inherit;
+            flex: 1;
         }
 
         @media (max-width: 768px) {
@@ -349,26 +308,18 @@
             .logo-text {
                 font-size: 2em;
             }
-            .fame-box {
-                width: 95%;
-                padding: 20px;
-            }
-            .slider-btn {
-                width: 40px;
-                height: 40px;
-                font-size: 18px;
-            }
-            .profile-image {
-                width: 80px;
-                height: 80px;
-            }
-            .profile-username {
-                font-size: 1.2em;
+            .contact-methods {
+                flex-direction: column;
             }
         }
     </style>
 </head>
 <body>
+    <div id="notification" class="notification">
+        <span class="check">✓</span>
+        <span id="notification-text">Discord username copied!</span>
+    </div>
+
     <div class="container">
         <div class="header-container">
             <div class="top-logo">
@@ -387,211 +338,75 @@
                         <a href="index.html" class="nav-link" id="homeLink">Home</a>
                     </div>
                     <div class="nav-links-right">
-                        <a href="hall-of-fame.html" class="nav-link active" id="hallOfFameLink">Hall of Fame</a>
+                        <a href="hall-of-fame.html" class="nav-link" id="hallOfFameLink">Hall of Fame</a>
                     </div>
                 </div>
             </div>
         </div>
 
         <div class="content">
-            <div class="hall-of-fame-title">
-                <h1>Hall of Fame</h1>
-                <p>Recognition and achievements from across the R6 community</p>
+            <div class="hello-container">
+                <h2 class="hello-title">Hello</h2>
+                <p class="welcome-message">Welcome to my webpage! Feel free to check out my Hall of Fame and learn more about my journey in the R6 community.</p>
             </div>
+        </div>
 
-            <div class="slider-container">
-                <div class="slider-navigation">
-                    <div class="slider-btn prev-btn">←</div>
-                    <div class="slider-btn next-btn">→</div>
+        <div class="about-section">
+            <h2 class="section-title">About Me</h2>
+            <p class="about-content">
+                Hello my name is <span class="highlight">M1K3Y</span> and I have been apart of R6 training com for over a year and in that time I have managed to gain a good reputation as a trusted player and have received over 100 quizzes across many trusted <span class="highlight">cabineteers</span>.
+            </p>
+        </div>
+
+        <div class="accomplishments-section">
+            <h2 class="section-title">Accomplishments</h2>
+            <ul class="accomplishment-list">
+                <li class="accomplishment-item">Achieved the trust of the R6 community.</li>
+                <li class="accomplishment-item">Being a tester for many known Chair providers.</li>
+                <li class="accomplishment-item">Being awarded staff positions from many well known and trusted Chair providers.</li>
+                <li class="accomplishment-item">Surviving the discontinuation of Klar R6.</li>
+            </ul>
+        </div>
+
+        <div class="contact-section">
+            <h2 class="section-title">Contact Me</h2>
+            <div class="contact-methods">
+                <a href="https://x.com/M1K3YTrade7297" target="_blank" class="contact-link">
+                    <div class="contact-method">
+                        <div class="contact-icon">𝕏</div>
+                        <div class="contact-platform">Twitter</div>
+                        <div class="contact-username">M1K3Y</div>
+                    </div>
+                </a>
+                <div class="contact-method" id="discord-contact">
+                    <div class="contact-icon">
+                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M19.8919 4.80217C18.4315 4.14867 16.8603 3.6557 15.2204 3.3443C15.1798 3.3443 15.1392 3.36444 15.119 3.40431C14.9152 3.76278 14.691 4.22431 14.5379 4.58278C12.7779 4.29144 11.0203 4.29144 9.30082 4.58278C9.14766 4.2049 8.92341 3.76278 8.7196 3.40431C8.69935 3.36444 8.65879 3.3443 8.61823 3.3443C6.97823 3.6557 5.40707 4.14867 3.94669 4.80217C3.92644 4.80217 3.90619 4.82231 3.89606 4.84245C0.8063 9.47862 0.017735 13.9924 0.401362 18.4663C0.401362 18.5062 0.421613 18.5461 0.451989 18.566C2.31864 19.9463 4.12648 20.7997 5.9141 21.3735C5.95466 21.3936 5.99522 21.3735 6.01547 21.3337C6.41973 20.7799 6.78386 20.1861 7.10723 19.5526C7.12748 19.5128 7.10723 19.4729 7.06667 19.453C6.4771 19.2117 5.90778 18.9305 5.3587 18.6094C5.31814 18.5894 5.31814 18.5296 5.3587 18.5097C5.45998 18.4299 5.56126 18.3501 5.66254 18.2702C5.68279 18.2503 5.71322 18.2503 5.73347 18.2702C9.38185 19.9263 13.3221 19.9263 16.93 18.2702C16.9502 18.2503 16.9806 18.2503 17.0009 18.2702C17.1021 18.3501 17.2034 18.4299 17.3047 18.5097C17.3453 18.5296 17.3453 18.5894 17.3047 18.6094C16.7556 18.9305 16.1863 19.2117 15.5967 19.453C15.5562 19.4729 15.5359 19.5128 15.5562 19.5526C15.8795 20.1861 16.2437 20.7799 16.6479 21.3337C16.6682 21.3735 16.7087 21.3936 16.7493 21.3735C18.5571 20.7997 20.3649 19.9463 22.2316 18.566C22.262 18.5461 22.2822 18.5062 22.2822 18.4663C22.7271 13.2188 21.4691 8.74477 19.9478 4.84245C19.9377 4.82231 19.9174 4.80217 19.8919 4.80217ZM7.83035 15.7926C6.75488 15.7926 5.85879 14.8196 5.85879 13.6407C5.85879 12.4619 6.73463 11.4889 7.83035 11.4889C8.93621 11.4889 9.83229 12.4818 9.81204 13.6407C9.81204 14.8196 8.9261 15.7926 7.83035 15.7926ZM16.0102 15.7926C14.9348 15.7926 14.0387 14.8196 14.0387 13.6407C14.0387 12.4619 14.9145 11.4889 16.0102 11.4889C17.1161 11.4889 18.0122 12.4818 17.9919 13.6407C17.9919 14.8196 17.1161 15.7926 16.0102 15.7926Z" fill="#ff1493"/>
+                        </svg>
+                    </div>
+                    <div class="contact-platform">Discord</div>
+                    <div class="contact-username">i__m1k3y__i</div>
                 </div>
-                <div class="slider">
-                    <!-- Slide 1 -->
-                    <div class="slide">
-                        <div class="fame-box">
-                            <div class="profile-username">M1K3Y</div>
-                            <div class="profile-image-container">
-                                <div class="profile-image">
-                                    <img src="m1k3y.png" alt="M1K3Y Profile">
-                                </div>
-                            </div>
-                            <h2 class="profile-name">M1K3Y</h2>
-                            <div class="profile-content">
-                                <p>Recognized as one of the most trusted members in the R6 training community. After contributing for over a year, I've established a reputation for reliability and expertise across multiple platforms.</p>
-                                <p>My dedication to helping new players and maintaining high standards has earned respect from both users and providers alike.</p>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <!-- Slide 2 - SUFFIX -->
-                    <div class="slide">
-                        <div class="fame-box">
-                            <div class="profile-username">SUFFIX</div>
-                            <div class="profile-image-container">
-                                <div class="profile-image">
-                                    <img src="suffix.png" alt="SUFFIX Profile">
-                                </div>
-                            </div>
-                            <h2 class="profile-name">SUFFIX</h2>
-                            <div class="profile-content">
-                                <p>Another well known and trusted member for over 3 years he was well known for being one of the first big namer DMA's in com and now is the owner of DYSPHORIA network.</p>
-                                <a href="https://t.me/DysphoriaRedirect" target="_blank" class="profile-link">https://t.me/DysphoriaRedirect</a>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <!-- Slide 3 - DYNO -->
-                    <div class="slide">
-                        <div class="fame-box">
-                            <div class="profile-username">DYNO</div>
-                            <div class="profile-image-container">
-                                <div class="profile-image">
-                                    <img src="dyno.png" alt="DYNO Profile">
-                                </div>
-                            </div>
-                            <h2 class="profile-name">DYNO</h2>
-                            <div class="profile-content">
-                                <p>Dyno has been well known in r6 com for over 1 and a half years now mainly for being the current owner of the Official DMA Discord server.</p>
-                                <p>He is also well known for overspending on accounts he has gotten banned such as Dyno.tm and many other it is estimated that he has gotten over 1.5K in accounts banned as a DMA user.</p>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <!-- Slide 4 - VLOXXE -->
-                    <div class="slide">
-                        <div class="fame-box">
-                            <div class="profile-username">VLOXXE</div>
-                            <div class="profile-image-container">
-                                <div class="profile-image">
-                                    <img src="vloxxe.png" alt="VLOXXE Profile">
-                                </div>
-                            </div>
-                            <h2 class="profile-name">VLOXXE</h2>
-                            <div class="profile-content">
-                                <p>Vloxxe has been r6 com for many years and mainly has been known as people sidepieces starting off as Suffix's than later moving onto Dyno's as he becomes the Co-Owner of the DMA discord apart from this he was known as a great rager but terrible closet giving everyone at least 300 rollback per seasons.</p>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <!-- Slide 5 - WNC -->
-                    <div class="slide">
-                        <div class="fame-box">
-                            <div class="profile-username">WNC</div>
-                            <div class="profile-image-container">
-                                <div class="profile-image">
-                                    <img src="wnc.gif" alt="WNC Profile">
-                                </div>
-                            </div>
-                            <h2 class="profile-name">WNC</h2>
-                            <div class="profile-content">
-                                <p>Wnc is a new name to com but that hasn't stopped him climbing up with the big namers with the use of his Py coding skills he has managed to exploit the Ubisoft API in many different ways earning the respect of many. He is also know as a high quality NFA account seller which he uses his knowledge of Ubisoft systems to allow PC login to play ranked bypassing 2fa.</p>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <!-- Slide 6 -->
-                    <div class="slide">
-                        <div class="fame-box">
-                            <div class="profile-username">M1K3Y</div>
-                            <div class="profile-image-container">
-                                <div class="profile-image">
-                                    <img src="m1k3y.png" alt="M1K3Y Profile">
-                                </div>
-                            </div>
-                            <h2 class="profile-name">Community Trust Award</h2>
-                            <div class="profile-content">
-                                <p>Received the prestigious Community Trust Award, voted by both providers and community members. This recognition highlights my consistent integrity, helpfulness, and dedication to the R6 community.</p>
-                                <p>This award represents the culmination of my contributions and the trust I've built throughout my involvement.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="slider-dots"></div>
             </div>
         </div>
     </div>
 
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const slider = document.querySelector('.slider');
-            const slides = document.querySelectorAll('.slide');
-            const dotsContainer = document.querySelector('.slider-dots');
-            const prevBtn = document.querySelector('.prev-btn');
-            const nextBtn = document.querySelector('.next-btn');
-            let currentSlide = 0;
-            const slideCount = slides.length;
-
-            // Create dots based on number of slides
-            slides.forEach((_, index) => {
-                const dot = document.createElement('div');
-                dot.classList.add('slider-dot');
-                if (index === 0) dot.classList.add('active');
-                dot.addEventListener('click', () => goToSlide(index));
-                dotsContainer.appendChild(dot);
-            });
-
-            const dots = document.querySelectorAll('.slider-dot');
-
-            // Initialize
-            updateSlider();
-
-            // Event listeners
-            prevBtn.addEventListener('click', prevSlide);
-            nextBtn.addEventListener('click', nextSlide);
-
-            // Home link functionality
-            document.getElementById('homeLink').addEventListener('click', function(e) {
-                e.preventDefault();
-                window.location.href = 'index.html';
-            });
-
-            // Functions
-            function updateSlider() {
-                slider.style.transform = `translateX(-${currentSlide * 100}%)`;
+        // Discord username copy functionality
+        document.getElementById('discord-contact').addEventListener('click', function() {
+            const username = "i__m1k3y__i";
+            navigator.clipboard.writeText(username).then(function() {
+                // Show notification
+                const notification = document.getElementById('notification');
+                notification.classList.add('show');
                 
-                // Update dots
-                dots.forEach((dot, index) => {
-                    dot.classList.toggle('active', index === currentSlide);
-                });
-                
-                // Animate current slide
-                const activeElement = slides[currentSlide].querySelector('.fame-box');
-                activeElement.style.animation = 'fadeIn 0.6s ease forwards, glow 2s infinite alternate';
-            }
-
-            function nextSlide() {
-                currentSlide = (currentSlide + 1) % slideCount;
-                updateSlider();
-            }
-
-            function prevSlide() {
-                currentSlide = (currentSlide - 1 + slideCount) % slideCount;
-                updateSlider();
-            }
-
-            function goToSlide(index) {
-                currentSlide = index;
-                updateSlider();
-            }
-
-            // Auto-advance slides every 8 seconds
-            let slideInterval = setInterval(nextSlide, 8000);
-
-            // Pause auto-advance on hover
-            slider.addEventListener('mouseenter', () => {
-                clearInterval(slideInterval);
-            });
-
-            slider.addEventListener('mouseleave', () => {
-                slideInterval = setInterval(nextSlide, 8000);
-            });
-
-            // Keyboard navigation
-            document.addEventListener('keydown', function(e) {
-                if (e.key === 'ArrowLeft') {
-                    prevSlide();
-                } else if (e.key === 'ArrowRight') {
-                    nextSlide();
-                }
+                // Hide notification after 3 seconds
+                setTimeout(function() {
+                    notification.classList.remove('show');
+                }, 3000);
+            }).catch(function(err) {
+                console.error('Could not copy text: ', err);
+                alert('Failed to copy Discord username. Please try again.');
             });
         });
     </script>
