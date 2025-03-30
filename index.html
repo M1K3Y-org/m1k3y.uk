@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>M1K3Y - R6 Community</title>
+    <title>M1K3Y</title>
     <style>
         :root {
             --primary-pink: #ff1493;
@@ -122,17 +122,26 @@
 
         .nav-links {
             display: flex;
-            gap: 20px;
             width: 100%;
+            justify-content: space-between;
         }
 
         .nav-links-left {
+            flex: 1;
             display: flex;
-            gap: 20px;
+            justify-content: flex-start;
+        }
+
+        .nav-links-center {
+            flex: 1;
+            display: flex;
+            justify-content: center;
         }
 
         .nav-links-right {
-            margin-left: auto;
+            flex: 1;
+            display: flex;
+            justify-content: flex-end;
         }
 
         .nav-link {
@@ -301,9 +310,10 @@
             .nav-links {
                 flex-direction: column;
                 align-items: center;
+                gap: 15px;
             }
-            .nav-links-right {
-                margin-left: 0;
+            .nav-links-left, .nav-links-center, .nav-links-right {
+                justify-content: center;
             }
             .logo-text {
                 font-size: 2em;
@@ -336,6 +346,9 @@
                 <div class="nav-links">
                     <div class="nav-links-left">
                         <a href="index.html" class="nav-link" id="homeLink">Home</a>
+                    </div>
+                    <div class="nav-links-center">
+                        <a href="https://m1k3y.co.uk" target="_blank" class="nav-link" id="storeLink">Check Out My Store</a>
                     </div>
                     <div class="nav-links-right">
                         <a href="hall-of-fame.html" class="nav-link" id="hallOfFameLink">Hall of Fame</a>
@@ -392,10 +405,5 @@
             </div>
         </div>
     </div>
-
-    <script>
-        // No longer needed since Discord box now links directly to the server
-        // instead of copying username to clipboard
-    </script>
 </body>
 </html>
